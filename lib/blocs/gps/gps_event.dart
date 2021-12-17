@@ -6,3 +6,10 @@ abstract class GpsEvent extends Equatable {
   @override
   List<Object> get props => [];
 }
+
+class GpsAndPermissionEvent extends GpsEvent{
+  final bool isGpsEnable;
+  final bool isGpsPermissionsGaranted;
+
+  const GpsAndPermissionEvent({required this.isGpsEnable,required  this.isGpsPermissionsGaranted});
+}
