@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:mapas_app/blocs/blocs.dart';
@@ -13,6 +12,9 @@ void main() {
       ),
       BlocProvider(
         create: (BuildContext context) => LocationBloc(),
+      ),
+      BlocProvider(
+        create: (BuildContext context) => MapBloc(),
       ),
     ],
     child: const MapsApp(),
