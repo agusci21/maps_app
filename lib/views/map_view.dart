@@ -33,7 +33,6 @@ class MapView extends StatelessWidget {
           onMapCreated: (controller) =>
               mapBloc.add(OnMapInitializeEvent(controller)),
 
-          //TODO makers, Polylines, mapa moviendose
         ),
       ),
     );
