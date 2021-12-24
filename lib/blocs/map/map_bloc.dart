@@ -31,11 +31,9 @@ class MapBloc extends Bloc<MapEvent, MapState> {
     });
 
     on<OnStartFollowingUserEvent>(_onStartFollowingUser);
-
-    on<OnStopFollowingUserEvent>(
-        (event, emit) => emit(state.copyWith(isFollowingUser: false)));
-
+    on<OnStopFollowingUserEvent>(_onStopFollowingUser);
     on<OnUpdateUserPolilineEvent>(_onPolylineNewPoint);
+    on<OnToggleUserRoute>(_onToggleUserRoute);
   }
 
   void _onInitMap(OnMapInitializeEvent event, Emitter<MapState> emit) {
@@ -56,6 +54,11 @@ class MapBloc extends Bloc<MapEvent, MapState> {
     moveCamera(locationBloc.state.lastKnownLocation!);
   }
 
+  void _onStopFollowingUser(
+      OnStopFollowingUserEvent event, Emitter<MapState> emit) {
+        emit(state.copyWith(isFollowingUser: false));
+  }
+
   void _onPolylineNewPoint(
       OnUpdateUserPolilineEvent event, Emitter<MapState> emit) {
     final myRoute = Polyline(
@@ -70,5 +73,9 @@ class MapBloc extends Bloc<MapEvent, MapState> {
     currentPolylines['myRoute'] = myRoute;
 
     emit(state.copyWith(polylines: currentPolylines));
+  }
+
+   void _onToggleUserRoute(OnToggleUserRoute event, Emitter<MapState> emit) {
+     emit(state.copyWith(isShowingMyRoute: !state.isShowingMyRoute));
   }
 }

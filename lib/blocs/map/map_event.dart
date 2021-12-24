@@ -21,3 +21,7 @@ class OnUpdateUserPolilineEvent extends MapEvent {
   final List<LatLng> userHistory;
   const OnUpdateUserPolilineEvent(this.userHistory);
 }
+
+
+
+class OnToggleUserRoute extends MapEvent{}
