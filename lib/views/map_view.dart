@@ -4,14 +4,17 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:mapas_app/blocs/blocs.dart';
 
 class MapView extends StatelessWidget {
+  final Set<Polyline> polylines;
   final LatLng initialLocation;
-  const MapView({Key? key, required this.initialLocation}) : super(key: key);
+  const MapView(
+      {Key? key, required this.initialLocation, required this.polylines})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final mapBloc = BlocProvider.of<MapBloc>(context);
     final size = MediaQuery.of(context).size;
-    final CameraPosition _initialCameraPosition = CameraPosition(
+    final CameraPosition initialCameraPosition = CameraPosition(
         target: LatLng(initialLocation.latitude, initialLocation.longitude),
         zoom: 15);
     return SizedBox(
@@ -21,11 +24,12 @@ class MapView extends StatelessWidget {
         onPointerMove: (pointerMoveEvent) =>
             mapBloc.add(OnStopFollowingUserEvent()),
         child: GoogleMap(
-          initialCameraPosition: _initialCameraPosition,
+          initialCameraPosition: initialCameraPosition,
           compassEnabled: false,
-          myLocationButtonEnabled: true,
+          myLocationButtonEnabled: false,
           zoomControlsEnabled: false,
-          myLocationEnabled: false,
+          myLocationEnabled: true,
+          polylines: polylines,
           onMapCreated: (controller) =>
               mapBloc.add(OnMapInitializeEvent(controller)),
 

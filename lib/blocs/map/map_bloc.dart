@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart' ;
 import 'package:mapas_app/blocs/blocs.dart';
 import 'package:mapas_app/themes/themes.dart';
 
@@ -17,7 +17,7 @@ class MapBloc extends Bloc<MapEvent, MapState> {
     _mapController = mapController;
   }
 
-  MapBloc({required this.locationBloc}) : super(const MapState()) {
+  MapBloc({required this.locationBloc}) : super( const MapState()) {
     on<OnMapInitializeEvent>(_onInitMap);
     locationBloc.stream.listen((locationState) {
       if (!state.isFollowingUser) return;
