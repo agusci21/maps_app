@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart' show LatLng;
 import 'package:mapas_app/blocs/blocs.dart';
 
 class ButtonFollowUser extends StatelessWidget {
@@ -17,7 +16,7 @@ class ButtonFollowUser extends StatelessWidget {
         child: BlocBuilder<MapBloc, MapState>(
           builder: (context, state) {
             return IconButton(
-                onPressed: () {},
+                onPressed: () {mapBloc.add(OnStartFollowingUserEvent());},
                 icon: Icon(
                   state.isFollowingUser
                       ? Icons.directions_run

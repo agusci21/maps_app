@@ -18,7 +18,8 @@ class MapView extends StatelessWidget {
       width: size.width,
       height: size.height,
       child: Listener(
-        onPointerMove: (pointerMoveEvent) => print('Cachadooo'),
+        onPointerMove: (pointerMoveEvent) =>
+            mapBloc.add(OnStopFollowingUserEvent()),
         child: GoogleMap(
           initialCameraPosition: _initialCameraPosition,
           compassEnabled: false,
@@ -27,7 +28,7 @@ class MapView extends StatelessWidget {
           myLocationEnabled: false,
           onMapCreated: (controller) =>
               mapBloc.add(OnMapInitializeEvent(controller)),
-      
+
           //TODO makers, Polylines, mapa moviendose
         ),
       ),
