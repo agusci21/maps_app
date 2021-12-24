@@ -16,3 +16,8 @@ class OnMapInitializeEvent extends MapEvent {
 class OnStopFollowingUserEvent extends MapEvent {}
 
 class OnStartFollowingUserEvent extends MapEvent {}
+
+class OnUpdateUserPolilineEvent extends MapEvent {
+  final List<LatLng> userHistory;
+  const OnUpdateUserPolilineEvent(this.userHistory);
+}
