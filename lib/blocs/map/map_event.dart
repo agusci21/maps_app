@@ -7,8 +7,12 @@ abstract class MapEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class OnMapInitializeEvent extends MapEvent{
+class OnMapInitializeEvent extends MapEvent {
   final GoogleMapController controller;
 
   const OnMapInitializeEvent(this.controller);
 }
+
+class OnStopFollowingUser extends MapEvent {}
+
+class OnStartFollowingUser extends MapEvent {}

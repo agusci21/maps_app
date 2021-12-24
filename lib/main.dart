@@ -14,7 +14,8 @@ void main() {
         create: (BuildContext context) => LocationBloc(),
       ),
       BlocProvider(
-        create: (BuildContext context) => MapBloc(),
+        create: (BuildContext context) =>
+            MapBloc(locationBloc: BlocProvider.of<LocationBloc>(context)),
       ),
     ],
     child: const MapsApp(),

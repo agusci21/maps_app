@@ -4,7 +4,7 @@ class MapState extends Equatable {
   final bool isMapInitialized;
   final bool isFollowingUser;
 
-  const MapState({this.isMapInitialized = false, this.isFollowingUser = false});
+  const MapState({this.isMapInitialized = false, this.isFollowingUser = true});
 
   MapState copyWith({
     bool? isMapInitialized,
