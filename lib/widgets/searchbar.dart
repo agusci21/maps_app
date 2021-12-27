@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mapas_app/blocs/blocs.dart';
@@ -33,32 +34,35 @@ class _SearchBarBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Container(
-        margin: const EdgeInsets.only(top: 10),
-        padding: const EdgeInsets.symmetric(horizontal: 10),
-        width: double.infinity,
-        child: GestureDetector(
-          onTap: () async {
-            final result = await showSearch(
-                context: context, delegate: SearchDestinationDelegate());
-            if (result == null) return;
-            onSearchResult(context, result);
-          },
-          child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 13),
-            child: const Text(
-              '¿Donde quires Ir?',
-              style: TextStyle(color: Colors.black87),
+      child: FadeInDown(
+        duration: const Duration(milliseconds: 400),
+        child: Container(
+          margin: const EdgeInsets.only(top: 10),
+          padding: const EdgeInsets.symmetric(horizontal: 10),
+          width: double.infinity,
+          child: GestureDetector(
+            onTap: () async {
+              final result = await showSearch(
+                  context: context, delegate: SearchDestinationDelegate());
+              if (result == null) return;
+              onSearchResult(context, result);
+            },
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 13),
+              child: const Text(
+                '¿Donde quires Ir?',
+                style: TextStyle(color: Colors.black87),
+              ),
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(100),
+                  boxShadow: const [
+                    BoxShadow(
+                        color: Colors.black12,
+                        blurRadius: 5,
+                        offset: Offset(0, 5))
+                  ]),
             ),
-            decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(100),
-                boxShadow: const [
-                  BoxShadow(
-                      color: Colors.black12,
-                      blurRadius: 5,
-                      offset: Offset(0, 5))
-                ]),
           ),
         ),
       ),

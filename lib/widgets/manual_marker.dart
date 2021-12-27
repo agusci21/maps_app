@@ -85,7 +85,10 @@ class _ButtonBack extends StatelessWidget {
             Icons.arrow_back_ios_new,
             color: Colors.black,
           ),
-          onPressed: () {},
+          onPressed: () {
+            final searchBloc = BlocProvider.of<SearchBloc>(context);
+            searchBloc.add(OnDesactivateManualMarkerEvent());
+          },
         ),
       ),
     );
