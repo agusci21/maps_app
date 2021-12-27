@@ -16,7 +16,6 @@ class SearchBar extends StatelessWidget {
             final result = await showSearch(
                 context: context, delegate: SearchDestinationDelegate());
             if (result == null) return;
-            print(result);
           },
           child: Container(
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 13),
