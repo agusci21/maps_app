@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mapas_app/blocs/blocs.dart';
+import 'package:mapas_app/helpers/helpers.dart';
 
 class ManualMarker extends StatelessWidget {
   const ManualMarker({Key? key}) : super(key: key);
@@ -55,13 +56,15 @@ class _ManualMarkerBody extends StatelessWidget {
                   elevation: 0,
                   color: Colors.black,
                   onPressed: () async {
-                    //TODO Loading
                     final start = locationBloc.state.lastKnownLocation;
                     final end = mapBloc.mapCenter;
                     if (start == null || end == null) return;
+                    showLoadingMessage(context);
                     final destination =
                         await searchBloc.getCoorsStartToEnd(start, end);
-                    mapBloc.drawRoutePolyline(destination);
+                    await mapBloc.drawRoutePolyline(destination);
+                    searchBloc.add(OnDesactivateManualMarkerEvent());
+                    Navigator.pop(context);
                   },
                   minWidth: size.width - 120,
                   child: const Text(
