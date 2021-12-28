@@ -23,6 +23,9 @@ class _ManualMarkerBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final searchBloc = BlocProvider.of<SearchBloc>(context);
+    final locationBloc = BlocProvider.of<LocationBloc>(context);
+    final mapBloc = BlocProvider.of<MapBloc>(context);
     return SizedBox(
       width: size.width,
       height: size.height,
@@ -51,7 +54,13 @@ class _ManualMarkerBody extends StatelessWidget {
                   height: 50,
                   elevation: 0,
                   color: Colors.black,
-                  onPressed: () {},
+                  onPressed: () async {
+                    //TODO Loading
+                    final start = locationBloc.state.lastKnownLocation;
+                    final end = mapBloc.mapCenter;
+                    if (start == null || end == null) return;
+                    await searchBloc.getCoorsStartToEnd(start, end);
+                  },
                   minWidth: size.width - 120,
                   child: const Text(
                     'Confirmar Destino',

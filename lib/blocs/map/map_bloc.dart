@@ -15,6 +15,7 @@ class MapBloc extends Bloc<MapEvent, MapState> {
   final LocationBloc locationBloc;
   GoogleMapController? _mapController;
   StreamSubscription<LocationState>? locationStateSuscription;
+  LatLng? mapCenter;
 
   set mapController(GoogleMapController? mapController) {
     _mapController = mapController;
