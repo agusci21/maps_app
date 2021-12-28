@@ -7,18 +7,18 @@ part 'search_event.dart';
 part 'search_state.dart';
 
 class SearchBloc extends Bloc<SearchEvent, SearchState> {
-
   TrafficService trafficService;
 
-  SearchBloc({required this.trafficService}) : super(const SearchState()){
+  SearchBloc({required this.trafficService}) : super(const SearchState()) {
     on<OnActivateManualMarkerEvent>(
         (event, emit) => emit(state.copyWith(isDisplayedManualMarked: true)));
 
-        on<OnDesactivateManualMarkerEvent>(
+    on<OnDesactivateManualMarkerEvent>(
         (event, emit) => emit(state.copyWith(isDisplayedManualMarked: false)));
   }
 
-  Future getCoorsStartToEnd (LatLng start, LatLng end)async{
+  Future getCoorsStartToEnd(LatLng start, LatLng end) async {
     final response = await trafficService.getCoorsStartToEnd(start, end);
+    return response;
   }
 }
