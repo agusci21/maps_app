@@ -8,5 +8,8 @@ abstract class SearchEvent extends Equatable {
 }
 
 class OnActivateManualMarkerEvent extends SearchEvent{}
-
 class OnDesactivateManualMarkerEvent extends SearchEvent{}
+class OnNewPlacesFoundEvent extends SearchEvent{
+  final List<Feature> places;
+  const OnNewPlacesFoundEvent(this.places);
+}
