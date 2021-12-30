@@ -19,6 +19,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
         (event, emit) => emit(state.copyWith(isDisplayedManualMarked: false)));
     on<OnNewPlacesFoundEvent>(
         (event, emit) => emit(state.copyWith(places: event.places)));
+        on<OnAddToHistoryEvent>((event, emit) => emit(state.copyWith(history: [event.place, ...state.history])));
   }
 
   Future<RouteDestination> getCoorsStartToEnd(LatLng start, LatLng end) async {
