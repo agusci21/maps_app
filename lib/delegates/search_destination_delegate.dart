@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:mapas_app/blocs/blocs.dart';
 import 'package:mapas_app/models/models.dart';
 
@@ -41,17 +42,26 @@ class SearchDestinationDelegate extends SearchDelegate<SearchResult> {
         return ListView.separated(
           itemCount: places.length,
           separatorBuilder: (context, index) => const Divider(),
-          itemBuilder: (context, index) => ListTile(
-            title: Text(places[index].text),
-            subtitle: Text(places[index].placeName),
-            leading: const Icon(
-              Icons.place_outlined,
-              color: Colors.black,
-            ),
-            onTap: () {
-              
-            },
-          ),
+          itemBuilder: (context, index) {
+            final place = places[index];
+            return ListTile(
+              title: Text(places[index].text),
+              subtitle: Text(places[index].placeName),
+              leading: const Icon(
+                Icons.place_outlined,
+                color: Colors.black,
+              ),
+              onTap: () {
+                final result = SearchResult(
+                    isCancel: false,
+                    isManual: false,
+                    position: LatLng(place.center[1], place.center[0]),
+                    name: place.text,
+                    description: place.placeName);
+                close(context, result);
+              },
+            );
+          },
         );
       },
     );
