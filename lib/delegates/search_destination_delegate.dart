@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mapas_app/blocs/blocs.dart';
 import 'package:mapas_app/models/models.dart';
 
 class SearchDestinationDelegate extends SearchDelegate<SearchResult> {
@@ -29,7 +31,14 @@ class SearchDestinationDelegate extends SearchDelegate<SearchResult> {
 
   @override
   Widget buildResults(BuildContext context) {
-    return const Text('buildResults');
+    final searchBloc = BlocProvider.of<SearchBloc>(context);
+    final proximity = BlocProvider.of<LocationBloc>(context).state.lastKnownLocation!;
+    searchBloc.getPlacesByQuery(proximity, query);
+    return BlocBuilder<SearchBloc, SearchState>(
+      builder: (context, state) {
+        return Text('Aqui iran los resultaods');
+      },
+    );
   }
 
   @override
