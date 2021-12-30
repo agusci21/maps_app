@@ -37,7 +37,22 @@ class SearchDestinationDelegate extends SearchDelegate<SearchResult> {
     searchBloc.getPlacesByQuery(proximity, query);
     return BlocBuilder<SearchBloc, SearchState>(
       builder: (context, state) {
-        return Text('Resultados: ${state.places.length}');
+        final places = state.places;
+        return ListView.separated(
+          itemCount: places.length,
+          separatorBuilder: (context, index) => const Divider(),
+          itemBuilder: (context, index) => ListTile(
+            title: Text(places[index].text),
+            subtitle: Text(places[index].placeName),
+            leading: const Icon(
+              Icons.place_outlined,
+              color: Colors.black,
+            ),
+            onTap: () {
+              
+            },
+          ),
+        );
       },
     );
   }

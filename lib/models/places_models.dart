@@ -1,7 +1,3 @@
-// To parse this JSON data, do
-//
-//     final placesResponse = placesResponseFromMap(jsonString);
-
 import 'dart:convert';
 
 class PlacesResponse {
@@ -43,7 +39,6 @@ class Feature {
         required this.placeType,
         required this.properties,
         required this.textEs,
-        // required this.languageEs,
         required this.placeNameEs,
         required this.text,
         required this.language,
@@ -60,7 +55,6 @@ class Feature {
     final List<String> placeType;
     final Properties properties;
     final String textEs;
-    // final Language? languageEs;
     final String placeNameEs;
     final String text;
     final String? language;
@@ -81,7 +75,6 @@ class Feature {
         placeType: List<String>.from(json["place_type"].map((x) => x)),
         properties: Properties.fromMap(json["properties"]),
         textEs: json["text_es"],
-        // languageEs: json["language_es"] == null ? null : languageValues.map[json["language_es"]],
         placeNameEs: json["place_name_es"],
         text: json["text"],
         language: json["language"],
@@ -99,7 +92,6 @@ class Feature {
         "place_type": List<dynamic>.from(placeType.map((x) => x)),
         "properties": properties.toMap(),
         "text_es": textEs,
-        // "language_es": languageEs == null ? null : languageValues.reverse[languageEs],
         "place_name_es": placeNameEs,
         "text": text,
         "language": language,
@@ -123,7 +115,6 @@ class Context {
         required this.textEs,
         required this.text,
         required this.wikidata,
-        // required this.languageEs,
         required this.language,
         required this.shortCode,
     });
@@ -132,7 +123,6 @@ class Context {
     final String textEs;
     final String text;
     final String? wikidata;
-    // final Language? languageEs;
     final String? language;
     final String? shortCode;
 
@@ -145,7 +135,6 @@ class Context {
         textEs: json["text_es"],
         text: json["text"],
         wikidata: json["wikidata"],
-        // languageEs: json["language_es"],
         language: json["language"],
         shortCode: json["short_code"],
     );
@@ -155,7 +144,6 @@ class Context {
         "text_es": textEs,
         "text": text,
         "wikidata": wikidata,
-        // "language_es": languageEs == null ? null : languageValues.reverse[languageEs],
         "language": language,
         "short_code": shortCode,
     };
