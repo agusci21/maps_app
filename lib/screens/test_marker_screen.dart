@@ -8,12 +8,11 @@ class TestMarkerScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Container(
-            color: Colors.red,
+        child: SizedBox(
             width: 350,
             height: 150,
             child: CustomPaint(
-              painter: StartMarkerPainter(destination: 'Casa ', minutes: 15),
+              painter: EndMarkerPainter(destination: 'Casa ', kilometers: 25),
             )),
       ),
     );
