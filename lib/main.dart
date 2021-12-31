@@ -19,7 +19,8 @@ void main() {
             MapBloc(locationBloc: BlocProvider.of<LocationBloc>(context)),
       ),
       BlocProvider(
-        create: (BuildContext context) => SearchBloc(trafficService: TrafficService()),
+        create: (BuildContext context) =>
+            SearchBloc(trafficService: TrafficService()),
       ),
     ],
     child: const MapsApp(),
@@ -34,6 +35,6 @@ class MapsApp extends StatelessWidget {
     return const MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Material App',
-        home: LoadingScreen());
+        home: TestMarkerScreen());
   }
 }
