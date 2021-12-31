@@ -9,14 +9,12 @@ class TestMarkerScreen extends StatelessWidget {
     return Scaffold(
       body: Center(
         child: Container(
-          color: Colors.red,
-          width: 350,
-          height: 150,
-          child: CustomPaint(
-            painter: StartMarkerPainter(),
-          )
-        ),
-        
+            color: Colors.red,
+            width: 350,
+            height: 150,
+            child: CustomPaint(
+              painter: StartMarkerPainter(),
+            )),
       ),
     );
   }
