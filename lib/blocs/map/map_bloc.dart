@@ -94,17 +94,25 @@ class MapBloc extends Bloc<MapEvent, MapState> {
         startCap: Cap.roundCap,
         endCap: Cap.roundCap);
 
+    double kms = destination.distance / 1000;
+    kms = (kms * 100).floorToDouble();
+    kms /= 100;
+
+    double tripDuration = (destination.duration / 60).floorToDouble();
+
     final startMarker = Marker(
         markerId: const MarkerId('start'),
         position: destination.points.first,
-        infoWindow: const InfoWindow(
-            title: 'Destino', snippet: 'Este es su punto de inicio'));
+        infoWindow: InfoWindow(
+            title: 'Inicio',
+            snippet: '$kms kilometros - $tripDuration minutos'));
 
     final endMarker = Marker(
         markerId: const MarkerId('end'),
         position: destination.points.last,
-        infoWindow:
-            const InfoWindow(title: 'Inicio', snippet: 'Este es su Destino'));
+        infoWindow: InfoWindow(
+          title: 'Destino',
+        ));
 
     final currentPolylines = Map<String, Polyline>.from(state.polylines);
     currentPolylines['route'] = myRoute;
