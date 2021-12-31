@@ -38,8 +38,8 @@ class MapBloc extends Bloc<MapEvent, MapState> {
     on<OnStopFollowingUserEvent>(_onStopFollowingUser);
     on<OnUpdateUserPolilineEvent>(_onPolylineNewPoint);
     on<OnToggleUserRoute>(_onToggleUserRoute);
-    on<OnDisplayPolylinesEvent>(
-        (event, emit) => emit(state.copyWith(polylines: event.polylines, markers: event.markers)));
+    on<OnDisplayPolylinesEvent>((event, emit) => emit(
+        state.copyWith(polylines: event.polylines, markers: event.markers)));
   }
 
   void _onInitMap(OnMapInitializeEvent event, Emitter<MapState> emit) {
@@ -94,16 +94,18 @@ class MapBloc extends Bloc<MapEvent, MapState> {
         startCap: Cap.roundCap,
         endCap: Cap.roundCap);
 
-        final startMarker = Marker(
-          markerId: const MarkerId('start'),
-          position: destination.points.first
-        );
+    final startMarker = Marker(
+        markerId: const MarkerId('start'), position: destination.points.first);
+
+    final endMarker = Marker(
+        markerId: const MarkerId('end'), position: destination.points.last);
 
     final currentPolylines = Map<String, Polyline>.from(state.polylines);
     currentPolylines['route'] = myRoute;
 
     final currentMarkers = Map<String, Marker>.from(state.markers);
     currentMarkers['start'] = startMarker;
+    currentMarkers['end'] = endMarker;
     add(OnDisplayPolylinesEvent(currentPolylines, currentMarkers));
   }
 
